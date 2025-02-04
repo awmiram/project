@@ -122,6 +122,42 @@ int search_lesson(string search, student_info student[], int i)
     }
     return -1;
 }
+void sortby_GPA(student_info student[])
+{
+    int i, j;
+    student_info temp;
+    for (i = 0; i < 20; i++)
+    {
+        for (j = 0; j < 20 - i - 1; j++)
+        {
+            if (student[j].gpa < student[j + 1].gpa)
+            {
+                temp = student[j];
+                student[j] = student[j + 1];
+                student[j + 1] = temp;
+            }
+        }
+    }
+}
+void student_info::report_card()
+{
+    if (existance == true)
+    {
+        cout << "NAME : " << name << endl
+             << "MAJOR : " << major << endl
+             << "ID : " << id << endl;
+        for (int i = 0; i < 100; i++)
+        {
+            if (lesson_list[i].existance == true)
+            {
+                cout << "LESSON : " << lesson_list[i].lesson_name << endl
+                     << "UNITS : " << lesson_list[i].unit << endl
+                     << "SCORE : " << lesson_list[i].score << endl;
+            }
+        }
+        cout << "STUDENT GPA : " << gpa << endl;
+    }
+}
 int mainmenu()
 {
     int choice;
@@ -238,6 +274,15 @@ lbl_menu:
                     break;
                         }
                     }
+                    case 4:
+        {
+            int id;
+            cout << "ENTER STUDENT ID :" << endl;
+            cin >> id;
+            student[search_student(student, id)].report_card();
+            goto lbl_menu;
+            break;
+        }
                 }
             }
         }

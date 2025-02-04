@@ -72,6 +72,15 @@ int edit_studentmenu()
     cin >> choice;
     return choice;
 }
+int lesson_menu()
+{
+    int choice;
+    cout << "1. add lesson" << endl
+         << "2. remove lesson" << endl
+         << "3. edit lesson" << endl;
+    cin >> choice;
+    return choice;
+}
 int main()
 {
     student_info student[20];
@@ -111,6 +120,10 @@ lbl_menu:
                 student[search_student(student, id)].form();
                 goto lbl_menu;
                 break;
+                }
+                case 2:
+                {
+                    
                 }
             }
         }

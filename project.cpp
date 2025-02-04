@@ -174,6 +174,25 @@ void show_allstudent(student_info student[])
         }
     }
 }
+void show_studentbymajor(student_info student[])
+{
+    string major;
+    cout << "ENTER MAJOR : " << endl;
+    cin >> major;
+    sortby_GPA(student);
+    cout << left << setw(6) << "RANK" << setw(30) << "| NAME" << setw(20) << "| MAJOR" << setw(15) << "| ID" << setw(5) << "| GPA" << endl;
+    cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
+    int j = 1;
+    for (int i = 0; i < 20; i++)
+    {
+        if (student[i].existance == true && student[i].major == major)
+        {
+            cout << left << setw(6) << j<<'|'<< setw(29) << student[i].name<<'|'<< setw(19) << student[i].major<<'|'<< setw(14) << student[i].id<<'|'<< setw(5) << student[i].gpa<< endl;
+            j++;
+            cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
+        }
+    }
+}
 int mainmenu()
 {
     int choice;
@@ -306,6 +325,12 @@ lbl_menu:
     }case 2:
     {
         show_allstudent(student);
+         goto lbl_menu;
+            break;
+    }
+    case 3:
+    {
+        show_studentbymajor(student);
          goto lbl_menu;
             break;
     }

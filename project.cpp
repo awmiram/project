@@ -32,6 +32,14 @@ void student_info::form()
     getline(cin, major);
     cout << "ENTER ID : " << endl;
     cin >> id;
+    if (existance == false)
+    {
+        add_lesson();
+    }
+    GPA();
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    existance = true;
 }
 int findfreespace(student_info student[])
 {

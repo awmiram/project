@@ -158,6 +158,22 @@ void student_info::report_card()
         cout << "STUDENT GPA : " << gpa << endl;
     }
 }
+void show_allstudent(student_info student[])
+{
+    sortby_GPA(student);
+    cout << left << setw(6) << "RANK" << setw(30) << "| NAME" << setw(20) << "| MAJOR" << setw(15) << "| ID" << setw(5) << "| GPA" << endl;
+    cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
+    int j = 1;
+    for (int i = 0; i < 20; i++)
+    {
+        if (student[i].existance == true)
+        {
+            cout << left << setw(6) << j<<'|'<< setw(29) << student[i].name<<'|'<< setw(19) << student[i].major<<'|'<< setw(14) << student[i].id<<'|'<< setw(5) << student[i].gpa<< endl;
+            j++;
+            cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
+        }
+    }
+}
 int mainmenu()
 {
     int choice;
@@ -287,6 +303,11 @@ lbl_menu:
             }
         }
         }
+    }case 2:
+    {
+        show_allstudent(student);
+         goto lbl_menu;
+            break;
     }
     }
 }

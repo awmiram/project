@@ -14,7 +14,28 @@ struct student_info
     int id;
     float gpa = 0;
     lesson lesson_list[100];
+    void form();
 };
+void student_info::form()
+{
+    cout << "ENTER NAME : " << endl;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, name);
+    cout << "ENTER MAJOR : " << endl;
+    getline(cin, major);
+    cout << "ENTER ID : " << endl;
+    cin >> id;
+}
+int findfreespace(student_info student[])
+{
+    for (int i = 0; i < 20; i++)
+    {
+        if (!student[i].existance)
+            return i;
+    }
+    return -1;
+}
+
 int mainmenu()
 {
     int choice;
@@ -37,4 +58,23 @@ int student_menu()
 }
 int main()
 {
+    student_info student[20];
+    int index;
+lbl_menu:
+    switch (mainmenu())
+    {
+    case 1:
+    {
+        switch (student_menu())
+        {
+        case 1:
+        {
+            index = findfreespace(student);
+            student[index].form();
+            goto lbl_menu;
+            break;
+        }
+        }
+    }
+    }
 }

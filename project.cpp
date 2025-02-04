@@ -101,7 +101,18 @@ lbl_menu:
         }
         case 3:
         {
-
+            switch(edit_studentmenu())
+            {
+                case 1:
+                {
+                    int id;
+                cout << "ENTER STUDENT ID : ";
+                cin >> id;
+                student[search_student(student, id)].form();
+                goto lbl_menu;
+                break;
+                }
+            }
         }
         }
     }

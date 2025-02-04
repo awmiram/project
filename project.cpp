@@ -214,6 +214,18 @@ lbl_menu:
                     goto lbl_menu;
                     break;
                         }
+                        case 3:
+                        {
+                            int id;
+                    cout << "ENTER STUDENT ID : " << endl;
+                    cin >> id;
+                    string name;
+                    cout << "ENTER LESSON NAME YOU WANT TO EDIT : " << endl;
+                    cin >> name;
+                    student[search_student(student, id)].read_lesson(search_lesson(name, student, search_student(student, id)));
+                    goto lbl_menu;
+                    break;
+                        }
                     }
                 }
             }

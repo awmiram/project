@@ -64,6 +64,14 @@ int student_menu()
     cin >> choice;
     return choice;
 }
+int edit_studentmenu()
+{
+    int choice;
+    cout << "1. edit student personal info" << endl
+         << "2. edit lessons" << endl;
+    cin >> choice;
+    return choice;
+}
 int main()
 {
     student_info student[20];
@@ -90,6 +98,10 @@ lbl_menu:
             student[search_student(student, id)].existance = false;
             goto lbl_menu;
             break;
+        }
+        case 3:
+        {
+
         }
         }
     }

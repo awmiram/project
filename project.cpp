@@ -25,6 +25,16 @@ int mainmenu()
     cin >> choice;
     return choice;
 }
+int student_menu()
+{
+    int choice;
+    cout << "1.add student" << endl
+         << "2. remove student" << endl
+         << "3. edit student" << endl
+         << "4. show student report card" << endl;
+    cin >> choice;
+    return choice;
+}
 int main()
 {
 }

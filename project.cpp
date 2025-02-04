@@ -138,26 +138,7 @@ void sortby_GPA(student_info student[])
             }
         }
     }
-}
-void student_info::report_card()
-{
-    if (existance == true)
-    {
-        cout << "NAME : " << name << endl
-             << "MAJOR : " << major << endl
-             << "ID : " << id << endl;
-        for (int i = 0; i < 100; i++)
-        {
-            if (lesson_list[i].existance == true)
-            {
-                cout << "LESSON : " << lesson_list[i].lesson_name << endl
-                     << "UNITS : " << lesson_list[i].unit << endl
-                     << "SCORE : " << lesson_list[i].score << endl;
-            }
-        }
-        cout << "STUDENT GPA : " << gpa << endl;
-    }
-}
+
 int mainmenu()
 {
     int choice;

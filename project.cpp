@@ -334,5 +334,9 @@ lbl_menu:
          goto lbl_menu;
             break;
     }
+    case 4:
+    {
+        return 0;
+    }
     }
 }

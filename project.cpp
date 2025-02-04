@@ -122,6 +122,23 @@ int search_lesson(string search, student_info student[], int i)
     }
     return -1;
 }
+void sortby_GPA(student_info student[])
+{
+    int i, j;
+    student_info temp;
+    for (i = 0; i < 20; i++)
+    {
+        for (j = 0; j < 20 - i - 1; j++)
+        {
+            if (student[j].gpa < student[j + 1].gpa)
+            {
+                temp = student[j];
+                student[j] = student[j + 1];
+                student[j + 1] = temp;
+            }
+        }
+    }
+}
 int mainmenu()
 {
     int choice;

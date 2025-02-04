@@ -138,7 +138,7 @@ void sortby_GPA(student_info student[])
             }
         }
     }
-}
+
 int mainmenu()
 {
     int choice;
@@ -255,6 +255,15 @@ lbl_menu:
                     break;
                         }
                     }
+                    case 4:
+        {
+            int id;
+            cout << "ENTER STUDENT ID :" << endl;
+            cin >> id;
+            student[search_student(student, id)].report_card();
+            goto lbl_menu;
+            break;
+        }
                 }
             }
         }

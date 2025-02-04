@@ -35,7 +35,15 @@ int findfreespace(student_info student[])
     }
     return -1;
 }
-
+int search_student(student_info student[], int id)
+{
+    for (int i = 0; i < 20; i++)
+        if (student[i].id == id)
+        {
+            return i;
+        }
+    return -1;
+}
 int mainmenu()
 {
     int choice;
@@ -71,6 +79,15 @@ lbl_menu:
         {
             index = findfreespace(student);
             student[index].form();
+            goto lbl_menu;
+            break;
+        }
+        case 2:
+        {
+            int id;
+            cout << "ENTER SEARCH ID : " << endl;
+            cin >> id;
+            student[search_student(student, id)].existance = false;
             goto lbl_menu;
             break;
         }

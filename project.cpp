@@ -41,6 +41,30 @@ void student_info::form()
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     existance = true;
 }
+void student_info::GPA()
+{
+    int unitsum = 0;
+    gpa = 0;
+    for (int i = 0; i < 100 ; i++)
+    {
+        if (lesson_list[i].existance == false)
+            continue;
+        unitsum += lesson_list[i].unit;
+        gpa += lesson_list[i].unit * lesson_list[i].score;
+    }
+    gpa /= unitsum;
+}
+void student_info::read_lesson(int i)
+{
+    cout << "ENTER LESSON NAME : ";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, lesson_list[i].lesson_name);
+    cout << "ENTER UNITS : ";
+    cin >> lesson_list[i].unit;
+    cout << "ENTER SCORE : ";
+    cin >> lesson_list[i].score;
+    lesson_list[i].existance = true;
+}
 int findfreespace(student_info student[])
 {
     for (int i = 0; i < 20; i++)
@@ -81,19 +105,6 @@ void student_info::add_lesson()
         read_lesson(i);
     }
     GPA();
-}
-void student_info::GPA()
-{
-    int unitsum = 0;
-    gpa = 0;
-    for (int i = 0; i < 100 ; i++)
-    {
-        if (lesson_list[i].existance == false)
-            continue;
-        unitsum += lesson_list[i].unit;
-        gpa += lesson_list[i].unit * lesson_list[i].score;
-    }
-    gpa /= unitsum;
 }
 void student_info::makeprofile()
 {

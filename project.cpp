@@ -100,6 +100,17 @@ void student_info::makeprofile()
     form();
     existance = true;
 }
+int search_lesson(string search, student_info student[], int i)
+{
+    for (int j = 0; j < 100; j++)
+    {
+        if (search == student[i].lesson_list[j].lesson_name)
+        {
+            return j;
+        }
+    }
+    return -1;
+}
 int mainmenu()
 {
     int choice;
@@ -189,6 +200,19 @@ lbl_menu:
                             student[search_student(student, id)].add_lesson();
                              goto lbl_menu;
                             break;
+                        }
+                        case 2:
+                        {
+                            int id;
+                    cout << "ENTER STUDENT ID : " << endl;
+                    cin >> id;
+                    string name;
+                    cout << "ENTER LESSON NAME : " << endl;
+                    cin >> name;
+                    student[search_student(student, id)].lesson_list[search_lesson(name, student, search_student(student, id))].existance = false;
+                    student[search_student(student, id)].GPA();
+                    goto lbl_menu;
+                    break;
                         }
                     }
                 }

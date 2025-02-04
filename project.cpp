@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-struct lesson
+struct lesson                                                          
 {
-    string lesson_name;
+    string lesson_name;                              
     int unit;
     float score;
     bool existance = false;
@@ -65,80 +65,6 @@ void student_info::read_lesson(int i)
     cin >> lesson_list[i].score;
     lesson_list[i].existance = true;
 }
-int findfreespace(student_info student[])
-{
-    for (int i = 0; i < 20; i++)
-    {
-        if (!student[i].existance)
-            return i;
-    }
-    return -1;
-}
-int search_student(student_info student[], int id)
-{
-    for (int i = 0; i < 20; i++)
-        if (student[i].id == id)
-        {
-            return i;
-        }
-    return -1;
-}
-void student_info::add_lesson()
-{
-    int choice;
-    for (int i = 0; i < 100; i++)
-    {
-        if (lesson_list[i].existance == true)
-            continue;
-        cout << "1. ADD LESSON " << endl
-             << "2.EXIT" << endl;
-        cin >> choice;
-        if (choice == 2)
-        {
-            break;
-        }
-        else if (choice != 1)
-        {
-            cout << "invalid please try again";
-            continue;
-        }
-        read_lesson(i);
-    }
-    GPA();
-}
-void student_info::makeprofile()
-{
-    form();
-    existance = true;
-}
-int search_lesson(string search, student_info student[], int i)
-{
-    for (int j = 0; j < 100; j++)
-    {
-        if (search == student[i].lesson_list[j].lesson_name)
-        {
-            return j;
-        }
-    }
-    return -1;
-}
-void sortby_GPA(student_info student[])
-{
-    int i, j;
-    student_info temp;
-    for (i = 0; i < 20; i++)
-    {
-        for (j = 0; j < 20 - i - 1; j++)
-        {
-            if (student[j].gpa < student[j + 1].gpa)
-            {
-                temp = student[j];
-                student[j] = student[j + 1];
-                student[j + 1] = temp;
-            }
-        }
-    }
-}
 void student_info::report_card()
 {
     if (existance == true)
@@ -158,40 +84,10 @@ void student_info::report_card()
         cout << "STUDENT GPA : " << gpa << endl;
     }
 }
-void show_allstudent(student_info student[])
+void student_info::makeprofile()
 {
-    sortby_GPA(student);
-    cout << left << setw(6) << "RANK" << setw(30) << "| NAME" << setw(20) << "| MAJOR" << setw(15) << "| ID" << setw(5) << "| GPA" << endl;
-    cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
-    int j = 1;
-    for (int i = 0; i < 20; i++)
-    {
-        if (student[i].existance == true)
-        {
-            cout << left << setw(6) << j<<'|'<< setw(29) << student[i].name<<'|'<< setw(19) << student[i].major<<'|'<< setw(14) << student[i].id<<'|'<< setw(5) << student[i].gpa<< endl;
-            j++;
-            cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
-        }
-    }
-}
-void show_studentbymajor(student_info student[])
-{
-    string major;
-    cout << "ENTER MAJOR : " << endl;
-    cin >> major;
-    sortby_GPA(student);
-    cout << left << setw(6) << "RANK" << setw(30) << "| NAME" << setw(20) << "| MAJOR" << setw(15) << "| ID" << setw(5) << "| GPA" << endl;
-    cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
-    int j = 1;
-    for (int i = 0; i < 20; i++)
-    {
-        if (student[i].existance == true && student[i].major == major)
-        {
-            cout << left << setw(6) << j<<'|'<< setw(29) << student[i].name<<'|'<< setw(19) << student[i].major<<'|'<< setw(14) << student[i].id<<'|'<< setw(5) << student[i].gpa<< endl;
-            j++;
-            cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
-        }
-    }
+    form();
+    existance = true;
 }
 int mainmenu()
 {
@@ -230,6 +126,114 @@ int lesson_menu()
     cin >> choice;
     return choice;
 }
+void sortby_GPA(student_info student[])
+{
+    int i, j;
+    student_info temp;
+    for (i = 0; i < 20; i++)
+    {
+        for (j = 0; j < 20 - i - 1; j++)
+        {
+            if (student[j].gpa < student[j + 1].gpa)
+            {
+                temp = student[j];
+                student[j] = student[j + 1];
+                student[j + 1] = temp;
+            }
+        }
+    }
+}
+int search_student(student_info student[], int id)
+{
+    for (int i = 0; i < 20; i++)
+        if (student[i].id == id)
+        {
+            return i;
+        }
+    return -1;
+}
+void editprofile(int index, student_info student[])
+{
+    student[index].form();
+}
+int search_lesson(string search, student_info student[], int i)
+{
+    for (int j = 0; j < 100; j++)
+    {
+        if (search == student[i].lesson_list[j].lesson_name)
+        {
+            return j;
+        }
+    }
+    return -1;
+}
+int findfreespace(student_info student[])
+{
+    for (int i = 0; i < 20; i++)
+    {
+        if (!student[i].existance)
+            return i;
+    }
+    return -1;
+}
+void student_info::add_lesson()
+{
+    int choice;
+    for (int i = 0; i < 100; i++)
+    {
+        if (lesson_list[i].existance == true)
+            continue;
+        cout << "1. ADD LESSON " << endl
+             << "2.EXIT" << endl;
+        cin >> choice;
+        if (choice == 2)
+        {
+            break;
+        }
+        else if (choice != 1)
+        {
+            cout << "invalid please try again";
+            continue;
+        }
+        read_lesson(i);
+    }
+    GPA();
+}
+void show_allstudent(student_info student[])
+{
+    sortby_GPA(student);
+    cout << left << setw(6) << "RANK" << setw(30) << "| NAME" << setw(20) << "| MAJOR" << setw(15) << "| ID" << setw(5) << "| GPA" << endl;
+    cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
+    int j = 1;
+    for (int i = 0; i < 20; i++)
+    {
+        if (student[i].existance == true)
+        {
+            cout << left << setw(6) << j<<'|'<< setw(29) << student[i].name<<'|'<< setw(19) << student[i].major<<'|'<< setw(14) << student[i].id<<'|'<< setw(5) << student[i].gpa<< endl;
+            j++;
+            cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
+        }
+    }
+}
+void show_studentbymajor(student_info student[])
+{
+    string major;
+    cout << "ENTER MAJOR : " << endl;
+    cin >> major;
+    sortby_GPA(student);
+    cout << left << setw(6) << "RANK" << setw(30) << "| NAME" << setw(20) << "| MAJOR" << setw(15) << "| ID" << setw(5) << "| GPA" << endl;
+    cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
+    int j = 1;
+    for (int i = 0; i < 20; i++)
+    {
+        if (student[i].existance == true && student[i].major == major)
+        {
+            cout << left << setw(6) << j<<'|'<< setw(29) << student[i].name<<'|'<< setw(19) << student[i].major<<'|'<< setw(14) << student[i].id<<'|'<< setw(5) << student[i].gpa<< endl;
+            j++;
+            cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
+        }
+    }
+}
 int main()
 {
     student_info student[20];
@@ -259,33 +263,31 @@ lbl_menu:
         }
         case 3:
         {
-            switch(edit_studentmenu())
+            switch (edit_studentmenu())
+            case 1:
             {
-                case 1:
-                {
-                    int id;
+                int id;
                 cout << "ENTER STUDENT ID : ";
                 cin >> id;
                 student[search_student(student, id)].form();
                 goto lbl_menu;
                 break;
+            case 2:
+            {
+                switch (lesson_menu())
+                {
+                case 1:
+                {
+                    int id;
+                    cout << "ENTER STUDENT ID : ";
+                    cin >> id;
+                    student[search_student(student, id)].add_lesson();
+                    goto lbl_menu;
+                    break;
                 }
                 case 2:
                 {
-                    switch(lesson_menu())
-                    {
-                        case 1:
-                        {
-                             int id;
-                            cout << "ENTER STUDENT ID : ";
-                            cin >> id;
-                            student[search_student(student, id)].add_lesson();
-                             goto lbl_menu;
-                            break;
-                        }
-                        case 2:
-                        {
-                            int id;
+                    int id;
                     cout << "ENTER STUDENT ID : " << endl;
                     cin >> id;
                     string name;
@@ -295,10 +297,10 @@ lbl_menu:
                     student[search_student(student, id)].GPA();
                     goto lbl_menu;
                     break;
-                        }
-                        case 3:
-                        {
-                            int id;
+                }
+                case 3:
+                {
+                    int id;
                     cout << "ENTER STUDENT ID : " << endl;
                     cin >> id;
                     string name;
@@ -307,9 +309,12 @@ lbl_menu:
                     student[search_student(student, id)].read_lesson(search_lesson(name, student, search_student(student, id)));
                     goto lbl_menu;
                     break;
-                        }
-                    }
-                    case 4:
+                }
+                }
+            }
+            }
+        }
+        case 4:
         {
             int id;
             cout << "ENTER STUDENT ID :" << endl;
@@ -318,11 +323,10 @@ lbl_menu:
             goto lbl_menu;
             break;
         }
-                }
-            }
         }
-        }
-    }case 2:
+    }
+
+    case 2:
     {
         show_allstudent(student);
          goto lbl_menu;
@@ -338,5 +342,5 @@ lbl_menu:
     {
         return 0;
     }
-    }
+}
 }

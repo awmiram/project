@@ -1,5 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
+void getvalidint(auto &x)
+{
+    while (1)
+    {
+        cin >> x;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "INVALID INPUT! PLEASE TRY AGAIN" << endl;
+        }
+        else
+        {
+            break;
+        }
+    }
+}
 struct lesson
 {
     string lesson_name;
@@ -261,23 +278,6 @@ void show_studentbymajor(student_info student[])
             cout << left << setw(6) << j << '|' << setw(29) << student[i].name << '|' << setw(19) << student[i].major << '|' << setw(14) << student[i].id << '|' << setw(5) << student[i].gpa << endl;
             j++;
             cout << setfill('-') << setw(80) << '-' << setfill(' ') << endl;
-        }
-    }
-}
-void getvalidint(auto &x)
-{
-    while (1)
-    {
-        cin >> x;
-        if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "INVALID INPUT! PLEASE TRY AGAIN" << endl;
-        }
-        else
-        {
-            break;
         }
     }
 }

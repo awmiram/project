@@ -79,7 +79,7 @@ void student_info::read_lesson(int i)
     getvalidint(lesson_list[i].unit);
     cout << "ENTER SCORE : ";
     getvalidint(x);
-    lesson_list[i].score = x / 100.0;
+    lesson_list[i].score = x;
     lesson_list[i].existance = true;
 }
 void student_info::report_card()
